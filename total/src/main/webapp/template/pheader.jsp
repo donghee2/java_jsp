@@ -110,7 +110,7 @@
       <div class="profile">
          <img src="resource/images/profile.png" alt="">
          <p><%=id %>님 로그인 하셨습니다.</p>
-         <p><a href="logout.jsp">로그아웃</a> | 정보수정</p>
+         <p><a href="logout.jsp">로그아웃 | 정보수정</p>
       </div>
 <%
    		}

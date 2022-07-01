@@ -5,6 +5,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	table {
+		border-collapse: collapse;
+	}
+	th, td {
+		width: 100px;
+		text-align: center;
+		padding: 10px 0px;
+		border: 1px solid black;
+	}
+</style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function() {

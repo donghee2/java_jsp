@@ -23,7 +23,7 @@
 			var d = $('form').serialize();
 			
 			$.ajax({
-				url : "member_all_ajax.jsp",
+				url : "member_search_ajax.jsp",
 				data : d,
 				type : "get",
 				dataType : "json",
@@ -48,7 +48,7 @@
 </script>
 </head>
 <body>
-	<form action="">
+	<form action="member_search_ajax.jsp">
 		<select name="kind">
 			<option value="id">아이디</option>
 			<option value="name">이름</option>

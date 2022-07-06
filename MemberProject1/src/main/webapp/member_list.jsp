@@ -59,31 +59,7 @@
 		font-size: 20px;
 		border:1px solid black;
 	}
-	section h2 {
-		margin-top: 40px;
-		text-align: center;
-	}
-	section ul {
-		margin: 0 auto;
-		list-style-type: none;
-		display: flex;
-		width: 300px;
-		flex-direction: column;
-	}
-	section li {
-		margin-top: 10px;
-	}
-	li > input {
-		width: 100%;
-		height: 30px;
-		border-radius: 5px;
-		border: 1px solid gray;
-	}
-	li > button {
-		width: 50%;
-		height: 40px;
-		box-sizing: border-box;
-	}
+	
 </style>
 </head>
 <body>
@@ -105,37 +81,26 @@
 			</ul>
 		</nav>
 		<section>
-			<h2>회원정보추가</h2>
-			<form action="register.do" method="post">
-			<ul>
-				<li>
-				<input type="text" name="id" placeholder="아이디를 입력하세요">		
-				</li>
-				<li>
-				<input type="password" name="passwd" placeholder="암호를 입력하세요">	
-				</li>
-				<li>
-				<input type="text" name="name" placeholder="이름을 입력하세요">			
-				</li>
-				<li>
-				<input type="number" name="age" placeholder="나이를 입력하세요">	
-				</li>
-				<li>
-					<div>
-						<input type="radio" name="gender" id="g1" value="M">
-						<label for="g1">남</label>
-						<input type="radio" name="gender" id="g2" value="F">
-						<label for="g2">여</label>
-					</div>
-				</li>
-				<li>
-				<input type="text" name="address" placeholder="주소를 입력하세요">			
-				</li>
-				<li>
-					<button>회원가입</button><button type="button" onclick="history.back();">취소</button>
-				</li>
-			</ul>
-			</form>
+			<table>
+				<tr>
+					<th>아이디</th>
+					<th>암호</th>
+					<th>이름</th>
+					<th>나이</th>
+					<th>성별</th>
+					<th>주소</th>
+				</tr>
+				<!-- session 영역에 저장된 list를 출력 -->	
+				<c:forEach var="m" items="${sessionScope.list }">
+					<tr>
+						<td>${m.id }</td>
+						<td>${m.name }</td>
+						<td>${m.age }</td>
+						<td>${m.gender }</td>
+						<td>${m.address }</td>
+					</tr>
+				</c:forEach>		
+			</table>
 		</section>
 	</div>
 </body>

@@ -105,20 +105,20 @@
 			</ul>
 		</nav>
 		<section>
-			<h2>회원정보추가</h2>
-			<form action="register.do" method="post">
+			<h2>회원정보수정</h2>
+			<form action="update.do" method="post">
 			<ul>
 				<li>
-				<input type="text" name="id" placeholder="아이디를 입력하세요">		
+				<input type="text" name="id" value="${sessionScope.dto.id }" readonly>		
 				</li>
 				<li>
 				<input type="password" name="passwd" placeholder="암호를 입력하세요">	
 				</li>
 				<li>
-				<input type="text" name="name" placeholder="이름을 입력하세요">			
+				<input type="text" name="name" value="${sessionScope.dto.name }">			
 				</li>
 				<li>
-				<input type="number" name="age" placeholder="나이를 입력하세요">	
+				<input type="number" name="age" value="${sessionScope.dto.age }">	
 				</li>
 				<li>
 					<div>
@@ -129,10 +129,10 @@
 					</div>
 				</li>
 				<li>
-				<input type="text" name="address" placeholder="주소를 입력하세요">			
+				<input type="text" name="address" value="${sessionScope.dto.address }">			
 				</li>
 				<li>
-					<button>회원가입</button><button type="button" onclick="history.back();">취소</button>
+					<button>정보수정</button><button type="button" onclick="history.back();">취소</button>
 				</li>
 			</ul>
 			</form>

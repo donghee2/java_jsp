@@ -106,7 +106,7 @@
 		</nav>
 		<section>
 			<h2>회원정보추가</h2>
-			<form action="reguster.do" method="post">
+			<form action="register.do" method="post">
 			<ul>
 				<li>
 				<input type="text" name="id" placeholder="아이디를 입력하세요">		

@@ -122,9 +122,15 @@
 				</li>
 				<li>
 					<div>
-						<input type="radio" name="gender" id="g1" value="M">
+						<c:set var="m" value="M"/>
+						<c:set var="f" value="F"/>
+						<input type="radio" name="gender" id="g1" value="M"
+							<c:if test="${sessionScope.dto.gender == m }">checked</c:if>
+						>
 						<label for="g1">남</label>
-						<input type="radio" name="gender" id="g2" value="F">
+						<input type="radio" name="gender" id="g2" value="F"
+							<c:if test="${sessionScope.dto.gender == f }">checked</c:if>
+						>
 						<label for="g2">여</label>
 					</div>
 				</li>

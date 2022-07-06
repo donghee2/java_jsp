@@ -76,7 +76,7 @@
 		<nav>
 			<ul>
 				<li><a href="main.jsp">홈</a></li>
-				<li><a href="member_list.jsp">회원목록</a></li>
+				<li><a href="memberList.do">회원목록</a></li>
 				<li><a href="register.jsp">회원추가</a></li>
 			</ul>
 		</nav>
@@ -90,7 +90,6 @@
 					<th>성별</th>
 					<th>주소</th>
 				</tr>
-				<!-- session 영역에 저장된 list를 출력 -->	
 				<c:forEach var="m" items="${requestScope.list }">
 					<tr>
 						<td>${m.id }</td>
@@ -100,7 +99,7 @@
 						<td>${m.gender }</td>
 						<td>${m.address }</td>
 					</tr>
-				</c:forEach>		
+				</c:forEach>
 			</table>
 		</section>
 	</div>

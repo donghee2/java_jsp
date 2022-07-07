@@ -30,7 +30,7 @@ public class MemberUpdateViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
-		MemberDTO dto = MemberDAO.getInstance().SelectMemberDTO(id);
+		MemberDTO dto = MemberDAO.getInstance().selectMemberDTO(id);
 		request.setAttribute("dto", dto);
 		request.getRequestDispatcher("member_update_view.jsp").forward(request, response);
 	}

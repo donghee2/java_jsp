@@ -165,7 +165,7 @@ public class MemberDAO {
 		
 	}
 
-	public MemberDTO SelectMemberDTO(String id) {
+	public MemberDTO selectMemberDTO(String id) {
 		MemberDTO dto = null;
 		String sql = "select * from member where id like ?";
 		PreparedStatement pstmt = null;

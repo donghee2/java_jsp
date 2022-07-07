@@ -31,11 +31,12 @@ public class DispatcherServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String command = request.getParameter("command"); 
+		System.out.println(command);
 		response.setContentType("text/html;charset=utf-8");
 		Controller controller = HandlerMapping.getInstance().createController(command);
 		
 		ModelAndView view = null;
-		if(controller == null) {
+		if(controller != null) {
 			view = controller.execute(request, response);
 		}
 		

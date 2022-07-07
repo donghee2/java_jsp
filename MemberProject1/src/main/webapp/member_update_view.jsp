@@ -107,12 +107,13 @@
 		<section>
 			<h2>회원정보수정</h2>
 			<form action="update.do" method="post">
+				<input type="hidden" name="type" value="member">
 			<ul>
 				<li>
 				<input type="text" name="id" value="${requestScope.dto.id }" readonly>		
 				</li>
 				<li>
-				<input type="password" name="passwd" placeholder="암호를 입력하세요">	
+				<input type="password" name="passwd" value="${requestScope.dto.pass }">	
 				</li>
 				<li>
 				<input type="text" name="name" value="${requestScope.dto.name }">			

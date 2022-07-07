@@ -39,14 +39,20 @@ public class UpdateServlet extends HttpServlet {
 		String address = request.getParameter("address");
 		MemberDTO dto = new MemberDTO(id, passwd, name, age, gender, address);
 		
+		String type = request.getParameter("type");
+		
 		int result = MemberDAO.getInstance().updateMemberDTO(dto);
 		System.out.println(result + "건 수정이 완료됨");
-		HttpSession session = request.getSession();
-		dto.setPass(null);
-		session.setAttribute("dto", dto);
-		
-		
-		response.sendRedirect("main.jsp");
+		// 타입의 value가 my일 경우 세션값 저장 후 메인페이지로 이동
+		if(type.equals("my")) {
+			HttpSession session = request.getSession();
+			dto.setPass(null);
+			session.setAttribute("dto", dto);
+			response.sendRedirect("main.jsp");
+			// 아닐 경우에는 수정 후 맴버리스트페이지로 이동
+		} else {
+			response.sendRedirect("memberList.do");
+		}
 		
 		
 	}

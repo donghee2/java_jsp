@@ -107,6 +107,7 @@
 		<section>
 			<h2>회원정보수정</h2>
 			<form action="update.do" method="post">
+				<input type="hidden" name="command" value="update">
 				<input type="hidden" name="type" value="my">
 			<ul>
 				<li>

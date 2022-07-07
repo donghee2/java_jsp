@@ -100,13 +100,14 @@
 		<nav>
 			<ul>
 				<li><a href="main.jsp">홈</a></li>
-				<li><a href="memberList.do">회원목록</a></li>
+				<li><a href="memberList.do?command=search">회원목록</a></li>
 				<li><a href="register.jsp">회원추가</a></li>
 			</ul>
 		</nav>
 		<section>
 			<h2>회원정보추가</h2>
 			<form action="register.do" method="post">
+			<input type="hidden" name="command" value="register">
 			<ul>
 				<li>
 				<input type="text" name="id" placeholder="아이디를 입력하세요">		

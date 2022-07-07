@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import dao.MemberDAO;
 import dto.MemberDTO;
+import exception.MemberException;
 
 public class MemberService {
 	private static MemberService instance = new MemberService();
@@ -23,5 +24,27 @@ public class MemberService {
 	public ArrayList<MemberDTO> selectTopAge3() {
 		return MemberDAO.getInstance().selectTopAge3();
 	}
+
+	public void insertMemberDTO(MemberDTO dto) throws MemberException {
+		if(MemberDAO.getInstance().selectMemberDTO(dto.getId()) != null) 
+			throw new MemberException("아이디가 중복되었습니다.");
+		MemberDAO.getInstance().insertMemberDTO(dto);
+		
+	}
+
+	public ArrayList<MemberDTO> selectMemberList(String kind, String search) {
+		if(kind == null) 
+			return MemberDAO.getInstance().selectMemberList();
+		else 
+			return MemberDAO.getInstance().selectMemberList(kind, search);
+		
+	}
 	
 }
+
+
+
+
+
+
+

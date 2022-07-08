@@ -7,20 +7,31 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-   table{
-      margin: 0 auto;
-      border-collapse: collapse;
-   }
-   thead > tr{
-      border-top:1px solid black;
-      border-bottom:1px double black;
-   }
-   tbody > tr{
-      border-bottom:1px solid black;
-   }
-   td,th{
-      padding:10px 20px;
-   }
+	table{
+		margin: 0 auto;
+		border-collapse: collapse;
+	}
+	thead > tr{
+		border-top:1px solid black;
+		border-bottom:1px double black;
+	}
+	tbody > tr{
+		border-bottom:1px solid black;
+	}
+	td,th{
+		padding:10px 20px;
+	}
+	a:link, a:visited {
+		color: black;
+		text-decoration: none;	
+	}
+	.current {
+		color: red;
+		font-weight: bold;
+	}
+	tfoot td {
+		text-align: center;
+	}
 </style>
 </head>
 <body>
@@ -46,6 +57,34 @@
 				</tr>
 			</c:forEach>
 		</tbody>
+		<tfoot>
+			<tr>
+			<!-- pagging을 이용하여 페이지 번호 -->
+				<td colspan="5">
+					<!-- 이전 페이지 그룹이 있으면 화살표 ◁ 이전 그룹 마지막 페이지로 링크 -->
+					<c:if test="${requestScope.pagging.priviousPageGroup }">
+						<a href="list.do?pageNo=${requestScope.pagging.startPageOfPageGroup - 1 }">◁</a>
+					</c:if>
+					<c:forEach var="i" begin="${requestScope.pagging.startPageOfPageGroup }" 
+					end="${requestScope.pagging.endPageOfPageGroup }">
+					<!-- 현재 페이지 번호는 제외하고 링크 적용 -->
+					<c:choose>
+						<c:when test="${i == requestScope.pagging.currentPageNo }">
+							<span class="current">${i }</span>						
+						</c:when>
+						<c:otherwise>
+							<a href="list.do?pageNo=${i }">${i }</a>
+						</c:otherwise>				
+					</c:choose>
+					</c:forEach>
+					
+					<!-- 다음 페이지 그룹이 있으면 화살표 ▷ 다음 그룹 첫번째 페이지로 링크 -->
+					<c:if test="${requestScope.pagging.nextPageGroup }">
+						<a href="list.do?pageNo=${requestScope.pagging.endPageOfPageGroup + 1 }">▷</a>
+					</c:if>
+				</td>
+			</tr>
+		</tfoot>
 	</table>
 </body>
 </html>

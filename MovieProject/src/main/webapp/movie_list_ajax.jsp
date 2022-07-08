@@ -16,7 +16,7 @@
 				type : 'get',
 				datatype : 'json',
 				success : function(r) {
-					
+					console.log(r);
 				},
 				error:function(xhr, textStatus, errorThrow){
 					

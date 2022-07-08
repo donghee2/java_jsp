@@ -1,12 +1,12 @@
 package dto;
 
-public class movieDTO {
+public class MovieDTO {
 	private int bno;
 	private String title;
 	private String openDate;
 	private int count;
 	private String director;
-	public movieDTO(int bno, String title, String openDate, int count, String director) {
+	public MovieDTO(int bno, String title, String openDate, int count, String director) {
 		super();
 		this.bno = bno;
 		this.title = title;

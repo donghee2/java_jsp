@@ -6,6 +6,25 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+	$(function() {
+		$('button').click(function() {
+			var d = 'kind=' + $('#kind').val() + '&search=' + $('#search').val();
+			$.ajax({
+				url : 'search.do',
+				data : d,
+				type : 'get',
+				datatype : 'json',
+				success : function(r) {
+					
+				},
+				error:function(xhr, textStatus, errorThrow){
+					
+				}
+			});			
+		});
+	});
+</script>
 </head>
 <body>
 	<h2>영화 검색 페이지</h2>

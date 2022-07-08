@@ -83,7 +83,7 @@
 						<a href="list.do?pageNo=${requestScope.pagging.endPageOfPageGroup + 1 }">▷</a>
 					</c:if>
 				</td>
-			</tr>
+			</tr> 
 		</tfoot>
 	</table>
 </body>

@@ -4,23 +4,36 @@ public class BoardDTO {
 	private int bno;
 	private String title;
 	private String writer;
-	private String bdate;
+	private String nick;
 	private int bcount;
-	private String content;
+	private String bdate;
 	private int like;
 	private int hate;
+	private String content;
 	
 	public BoardDTO() {	}
-	
-	public BoardDTO(int bno, String title, String writer, String bdate, int bcount, String content, int like,
-			int hate) {
+
+	public BoardDTO(int bno, String title, String writer, String nick, int bcount, String bdate, int like, int hate,
+			String content) {
 		super();
 		this.bno = bno;
 		this.title = title;
 		this.writer = writer;
-		this.bdate = bdate;
+		this.nick = nick;
 		this.bcount = bcount;
+		this.bdate = bdate;
+		this.like = like;
+		this.hate = hate;
 		this.content = content;
+	}
+	public BoardDTO(int bno, String title, String writer, String nick, int bcount, String bdate, int like, int hate) {
+		super();
+		this.bno = bno;
+		this.title = title;
+		this.writer = writer;
+		this.nick = nick;
+		this.bcount = bcount;
+		this.bdate = bdate;
 		this.like = like;
 		this.hate = hate;
 	}
@@ -54,6 +67,14 @@ public class BoardDTO {
 
 	public void setWriter(String writer) {
 		this.writer = writer;
+	}
+
+	public String getNick() {
+		return nick;
+	}
+
+	public void setNick(String nick) {
+		this.nick = nick;
 	}
 
 	public String getBdate() {

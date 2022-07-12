@@ -7,53 +7,50 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-	nav{
-		width: 1200px;
-		margin:0 auto;
+   section{
+      width: 1200px;
+      margin:0 auto;
+   }
+   section table{
+      width: 90%;
+      border-collapse: collapse;
+   }
+   section table td,section table th{
+      border:1px solid black;
+      text-align: center;
+      padding:10px 0px;
+   }
+   section tfoot{
+      font-size: 0px;
+   }
+   section tfoot a:link,section tfoot a:visited{
+      display: inline-block;
+      padding:0px 10px;
+      text-decoration: none;
+      color:black;
+      font-size: 16px !important;
+   }
+   
+   .current_page{
+      display: inline-block;
+      padding:0px 10px;
+      font-size: 16px !important;
+      color:red;
+      font-weight: bold;
+   }
+   tfoot > tr > td {
+		position: relative;
 	}
-	nav > ul{
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		list-style-type: none;
-	}
-	nav > ul > li{
-		width: 200px;
-	}
-	section{
-		width: 1200px;
-		margin:0 auto;
-	}
-	section table{
-		width: 90%;
-		border-collapse: collapse;
-	}
-	section table td,section table th{
-		border:1px solid black;
-		text-align: center;
-		padding:10px 0px;
+	.btn_write {
+		display: inline-block;
+		padding: 20px 10px important;
+		position: absolute;
+		right: 0px;
 	}
 </style>
 </head>
 <body>
-		<!-- 회원등급이 1인지 확인을 한 후에 1이면 '권한이 없습니다' 경고창을 띄운후 이전페이지로 이동   -->
-		<c:if test="${sessionScope.dto == null || sessionScope.dto.gradeNo == 1 }">
-			<script type="text/javascript">
-				alert('권한이 없습니다.');
-				location.href = 'logout.do';
-			</script>
-		</c:if>
-		<!-- 회원등급이 7이면 관리자이므로 홈 게시판 회원관리 메뉴를 출력   -->
-		<c:if test="${sessionScope.dto.gradeNo == 7 }">
-			<nav>
-				<ul>
-					<li><a href="main.do">홈</a></li>
-					<li><a href="#">게시판 관리</a></li>
-					<li><a href="#">회원관리</a></li>
-				</ul>
-			</nav>
-		
-		</c:if>
+	<jsp:include page="template/header.jsp"></jsp:include>
 		<section>
 			<table>
 				<thead>
@@ -93,7 +90,7 @@
 							end="${requestScope.pagging.endPageOfPageGroup}">
 								<c:choose>
 									<c:when test="${i == requestScope.pagging.currentPageNo }">
-										${i }
+										<span class="current_page">${i }</span>
 									</c:when>
 									<c:otherwise>
 										<a href="main.do?pageNo=${i }">${i }</a>							
@@ -105,6 +102,7 @@
 							<c:if test="${requestScope.pagging.nextPageGroup }">
 								<a href="main.do?pageNo=${requestScope.pagging.endPageOfPageGroup+1}">▶</a>
 							</c:if>
+							<a href="board_write_view.jsp" class="btn_write">글쓰기</a>
 						</td>
 					</tr>
 				</tfoot>

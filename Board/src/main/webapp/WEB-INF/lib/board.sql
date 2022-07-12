@@ -1,12 +1,12 @@
--- °Ô½ÃÆÇ DB
--- È¸¿øµî±Þ Å×ÀÌºí
+-- ï¿½Ô½ï¿½ï¿½ï¿½ DB
+-- È¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½
 CREATE TABLE GRADE (
     GRADE_NO NUMBER(1) PRIMARY KEY,
     GRADE_NAME VARCHAR2(20)
 );
 
--- È¸¿ø Å×ÀÌºí
--- ¾ÆÀÌµð, ¾ÏÈ£, ÀÌ¸§, ´Ð³×ÀÓ, È¸¿øµî±Þ
+-- È¸ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½
+-- ï¿½ï¿½ï¿½Ìµï¿½, ï¿½ï¿½È£, ï¿½Ì¸ï¿½, ï¿½Ð³ï¿½ï¿½ï¿½, È¸ï¿½ï¿½ï¿½ï¿½ï¿½
 CREATE TABLE BOARD_MEMBER (
     ID VARCHAR2(30) PRIMARY KEY,
     PASSWD VARCHAR2(50),
@@ -18,8 +18,8 @@ CREATE TABLE BOARD_MEMBER (
 ALTER TABLE BOARD_MEMBER ADD CONSTRAINT FK_GRADE_NO FOREIGN KEY(GRADE_NO)
 REFERENCES GRADE(GRADE_NO) ON DELETE SET NULL;
 
--- °Ô½ÃÆÇ Å×ÀÌºí
--- ±Û¹øÈ£, Á¦¸ñ, ÀÛ¼ºÀÚ, ÀÛ¼ºÀÏ, Á¶È¸¼ö, ³»¿ë
+-- ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½
+-- ï¿½Û¹ï¿½È£, ï¿½ï¿½ï¿½ï¿½, ï¿½Û¼ï¿½ï¿½ï¿½, ï¿½Û¼ï¿½ï¿½ï¿½, ï¿½ï¿½È¸ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½
 CREATE TABLE BOARD (
     BNO NUMBER PRIMARY KEY,
     TITLE VARCHAR2(60),
@@ -32,8 +32,8 @@ CREATE TABLE BOARD (
 
 CREATE SEQUENCE BOARD_BNO START WITH 1 NOMAXVALUE;
 
--- ÁÁ¾Æ¿ä Å×ÀÌºí
--- °Ô½Ã±Û ¹øÈ£, È¸¿ø¾ÆÀÌµð
+-- ï¿½ï¿½ï¿½Æ¿ï¿½ ï¿½ï¿½ï¿½Ìºï¿½
+-- ï¿½Ô½Ã±ï¿½ ï¿½ï¿½È£, È¸ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½
 CREATE TABLE BOARD_LIKE (
     BNO NUMBER,
     ID VARCHAR2(30),
@@ -42,8 +42,8 @@ CREATE TABLE BOARD_LIKE (
     CONSTRAINT BOARD_LIKE_BNO_FK FOREIGN KEY(BNO) REFERENCES BOARD(BNO)
 );
 
--- ½È¾î¿ä Å×ÀÌºí
--- °Ô½Ã±Û ¹øÈ£, È¸¿ø¾ÆÀÌµð
+-- ï¿½È¾ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½
+-- ï¿½Ô½Ã±ï¿½ ï¿½ï¿½È£, È¸ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½
 CREATE TABLE BOARD_HATE (
     BNO NUMBER,
     ID VARCHAR2(30),
@@ -52,8 +52,8 @@ CREATE TABLE BOARD_HATE (
     CONSTRAINT BOARD_HATE_BNO_FK FOREIGN KEY(BNO) REFERENCES BOARD(BNO)
 );
 
--- ´ñ±Û Å×ÀÌºí
--- ´ñ±Û¹øÈ£, ÀÛ¼ºÀÚ, ³»¿ë, ÀÛ¼º½Ã°£, °Ô½Ã±Û¹øÈ£
+-- ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½
+-- ï¿½ï¿½Û¹ï¿½È£, ï¿½Û¼ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½, ï¿½Û¼ï¿½ï¿½Ã°ï¿½, ï¿½Ô½Ã±Û¹ï¿½È£
 CREATE TABLE BOARD_COMMENT (
     CNO NUMBER PRIMARY KEY,
     CONTENT VARCHAR2(500),
@@ -62,8 +62,8 @@ CREATE TABLE BOARD_COMMENT (
     WRITER VARCHAR2(30)
 );
 
--- ´ñ±Û ÁÁ¾Æ¿ä Å×ÀÌºí
--- ´ñ±Û¹øÈ£, È¸¿ø¾ÆÀÌµð
+-- ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ¿ï¿½ ï¿½ï¿½ï¿½Ìºï¿½
+-- ï¿½ï¿½Û¹ï¿½È£, È¸ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½
 CREATE TABLE BOARD_COMMENT_LIKE (
     CNO NUMBER,
     ID VARCHAR2(30),
@@ -72,8 +72,8 @@ CREATE TABLE BOARD_COMMENT_LIKE (
     CONSTRAINT BOARD_COMMENT_LIKE_CNO_FK FOREIGN KEY(CNO) REFERENCES BOARD_COMMENT(CNO)
 );
 
--- ´ñ±Û ½È¾î¿ä Å×ÀÌºí
--- ´ñ±Û¹øÈ£, È¸¿ø¾ÆÀÌµð
+-- ï¿½ï¿½ï¿½ ï¿½È¾ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½
+-- ï¿½ï¿½Û¹ï¿½È£, È¸ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½
 CREATE TABLE BOARD_COMMENT_HATE (
     CNO NUMBER,
     ID VARCHAR2(30),

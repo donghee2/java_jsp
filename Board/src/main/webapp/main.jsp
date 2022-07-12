@@ -43,7 +43,7 @@
 	}
 	.btn_write {
 		display: inline-block;
-		padding: 20px 10px important;
+		padding: 20px 10px;
 		position: absolute;
 		right: 0px;
 	}

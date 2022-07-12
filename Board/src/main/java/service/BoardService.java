@@ -25,5 +25,7 @@ public class BoardService {
 		return BoardDAO.getInstance().selectBoardList(pageNo);
 	}
 	
-	
+	public int selectAllCount() {
+		return BoardDAO.getInstance().selectAllCount();
+	}
 }

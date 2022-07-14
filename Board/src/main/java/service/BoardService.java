@@ -44,5 +44,9 @@ public class BoardService {
 	public void updateBoard(BoardDTO dto) {
 		BoardDAO.getInstance().updateBoard(dto);
 	}
+
+	public void addBoardCount(int bno) {
+		BoardDAO.getInstance().addBoardCount(bno);
+	}
 	
 }

@@ -12,7 +12,7 @@ public class AutoDatePrintJob implements Job {
 	public void execute(JobExecutionContext context) throws JobExecutionException {
 		// 자동으로 일을 할 메서드
 		Date date = new Date(Calendar.getInstance().getTimeInMillis());
-		SimpleDateFormat sdf = new SimpleDateFormat("YYYY=MM-dd HH:mm:ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
 		System.out.println(sdf.format(date));
 		
 	}

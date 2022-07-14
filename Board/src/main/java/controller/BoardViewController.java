@@ -17,7 +17,11 @@ public class BoardViewController implements Controller {
 			throws ServletException, IOException {
 		int bno = Integer.parseInt(request.getParameter("bno"));
 		
+		// 클릭한 게시글 조회수를 증가
+		BoardService.getInstance().addBoardCount(bno);
+		// 게시글 읽어옴
 		BoardDTO dto = BoardService.getInstance().selectboard(bno);
+		
 		dto.setContent(dto.getContent().replaceAll("\n", "<br>"));
 		request.setAttribute("board", dto);
 		return new ModelAndView("board_view.jsp", false);

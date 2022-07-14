@@ -10,17 +10,19 @@ import dto.BoardDTO;
 import service.BoardService;
 import view.ModelAndView;
 
-public class BoardViewController implements Controller {
+public class BoardUpdateViewController implements Controller {
 
 	@Override
 	public ModelAndView execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		int bno = Integer.parseInt(request.getParameter("bno"));
-		
+
 		BoardDTO dto = BoardService.getInstance().selectboard(bno);
-		dto.setContent(dto.getContent().replaceAll("\n", "<br>"));
+
 		request.setAttribute("board", dto);
-		return new ModelAndView("board_view.jsp", false);
+
+		return new ModelAndView("board_update_view.jsp", false);
+		
 	}
 
 }

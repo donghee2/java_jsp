@@ -6,21 +6,17 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dto.BoardDTO;
 import service.BoardService;
 import view.ModelAndView;
 
-public class BoardViewController implements Controller {
+public class BoardDeleteController implements Controller {
 
 	@Override
 	public ModelAndView execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		int bno = Integer.parseInt(request.getParameter("bno"));
-		
-		BoardDTO dto = BoardService.getInstance().selectboard(bno);
-		dto.setContent(dto.getContent().replaceAll("\n", "<br>"));
-		request.setAttribute("board", dto);
-		return new ModelAndView("board_view.jsp", false);
+		BoardService.getInstance().deleteBoard(bno);
+		return new ModelAndView("main.do", true);
 	}
 
 }

@@ -75,7 +75,7 @@ public class BoardDAO {
 			pstmt.setString(1, dto.getTitle());
 			pstmt.setString(2, dto.getWriter());
 			pstmt.setString(3, dto.getContent());
-			pstmt.executeQuery();
+			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -106,6 +106,40 @@ public class BoardDAO {
 		}
 		
 		return dto;
+	}
+
+	public void deleteBoard(int bno) {
+		String sql = "delete from board where bno = ?";
+		PreparedStatement pstmt = null;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bno);
+		
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.getInstance().close(null, pstmt);
+		}
+	}
+
+	public void updateBoard(BoardDTO dto) {
+		String sql = "update board set title = ?, content = ? where bno = ?";
+		PreparedStatement pstmt = null;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getTitle());
+			pstmt.setString(2, dto.getContent());
+			pstmt.setInt(3, dto.getBno());
+		
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.getInstance().close(null, pstmt);
+		}
 	}
 
 }

@@ -159,7 +159,76 @@ public class BoardDAO {
 		}
 	}
 
+	public int insertBoardLike(int bno, String id) {
+		String sql = "insert into board_like values(?,?)";
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bno);
+			pstmt.setString(2, id);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.getInstance().close(null, pstmt);
+		}
+		return result;
+	}
+	
+	public int deleteBoardLike(int bno, String id) {
+		String sql = "delete from board_like where bno = ? and id = ?";
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bno);
+			pstmt.setString(2, id);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.getInstance().close(null, pstmt);
+		}
+		return result;
+	}
+
+	public int insertBoardHate(int bno, String id) {
+		String sql = "insert into board_hate values(?,?)";
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bno);
+			pstmt.setString(2, id);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.getInstance().close(null, pstmt);
+		}
+		return result;
+	}
+	
+	public int deleteBoardHate(int bno, String id) {
+		String sql = "delete from board_hate where bno = ? and id = ?";
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bno);
+			pstmt.setString(2, id);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.getInstance().close(null, pstmt);
+		}
+		return result;
+	}
 }
+
+	
 
 
 

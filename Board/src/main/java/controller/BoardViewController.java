@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.HashSet;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -16,9 +17,15 @@ public class BoardViewController implements Controller {
 	public ModelAndView execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		int bno = Integer.parseInt(request.getParameter("bno"));
-		
-		// 클릭한 게시글 조회수를 증가
-		BoardService.getInstance().addBoardCount(bno);
+		HashSet<Integer> set = (HashSet<Integer>) request.getSession().getAttribute("bno_history");
+		if(set == null) {
+			set = new HashSet<Integer>();
+		}
+		if(set.add(bno)) {
+			// 클릭한 게시글 조회수를 증가
+			BoardService.getInstance().addBoardCount(bno);
+		}
+		request.getSession().setAttribute("bno_history", set);
 		// 게시글 읽어옴
 		BoardDTO dto = BoardService.getInstance().selectboard(bno);
 		

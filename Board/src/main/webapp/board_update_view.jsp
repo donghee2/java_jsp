@@ -51,7 +51,7 @@
 </head>
 <body>
 	<jsp:include page="template/header.jsp"></jsp:include>
-	<c:if test="${sessionScope.dto != requestScope.board.writer }">
+	<c:if test="${sessionScope.dto.id != requestScope.board.writer }">
 		<script>
 			location.href = "main.do";
 		</script>

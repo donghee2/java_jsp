@@ -26,7 +26,7 @@ public class BoardUpdateController implements Controller {
 		
 		BoardService.getInstance().updateBoard(dto);
 		
-		return new ModelAndView("boardView.do="+bno, false);
+		return new ModelAndView("boardView.do?bno="+bno, false);
 		
 	}
 

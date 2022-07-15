@@ -8,43 +8,42 @@
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
-	$(function() {
-		$("#btn_delete").click(function() {
+	$(function(){
+		$("#btn_delete").click(function(){
 			var d = "boardDelete.do?bno=${requestScope.board.bno}";
-			location.href = d;
+			//alert(d);
+			location.href=d;
 		});
-		$("#btn_update").click(function() {
+		$("#btn_update").click(function(){
 			var d = "boardUpdateView.do?bno=${requestScope.board.bno}";
-			location.href = d;
+			location.href=d;
 		});
-		$("#btn_like").click(function() {
+		$("#btn_like").click(function(){
 			var d = "bno=${requestScope.board.bno}";
 			$.ajax({
-				url = "boardLike.do",
-				data : d,
-				type : "get",
-				success : function(r) {
-					if(r == "1") {
+				url : "boardLike.do",
+				data:d,
+				type:"get",
+				success:function(r){
+					if(r == "1")
 						alert("이 글을 추천하셨습니다.");
-					} else {
-						alert("이 글 추천을 취소하셨습니다.");
-					}
+					else
+						alert("이 글을 추천을 취소 하셨습니다.");
 					location.reload();
 				}
 			});
 		});
-		$("#btn_hate").click(function() {
+		$("#btn_hate").click(function(){
 			var d = "bno=${requestScope.board.bno}";
 			$.ajax({
-				url = "board.do",
-				data : d,
-				type : "get",
-				success : function(r) {
-					if(r == "1") {
+				url : "boardHate.do",
+				data:d,
+				type:"get",
+				success:function(r){
+					if(r == "1")
 						alert("이 글을 싫어요 하셨습니다.");
-					} else {
-						alert("이 글 싫어요를 취소하셨습니다.");
-					}
+					else
+						alert("이 글을 싫어요를 취소 하셨습니다.");
 					location.reload();
 				}
 			});
@@ -88,6 +87,7 @@
 				</td>
 			</tr>
 			</c:if>
+			
 		</table>
 	</section>
 </body>

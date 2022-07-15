@@ -24,5 +24,16 @@ public class EmployeeMapper {
 	public List<EmployeeDTO> selectAllEmployee(){
 		return session.selectList("selectAllEmployee");
 	}
-
+	
+	public List<EmployeeDTO> selectDeptEmployee(String dept) {
+		return session.selectList("selectDeptEmployee", dept);
+	}
+	
 }
+
+
+
+
+
+
+

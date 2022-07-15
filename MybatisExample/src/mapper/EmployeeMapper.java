@@ -8,7 +8,7 @@ import config.DBManager;
 import dto.EmployeeDTO;
 
 public class EmployeeMapper {
-	private static EmployeeMapper instance = new  EmployeeMapper();
+	private static EmployeeMapper instance = new EmployeeMapper();
 	private SqlSession session;
 	
 	private EmployeeMapper() {
@@ -21,8 +21,8 @@ public class EmployeeMapper {
 		return instance;
 	}
 	
-	public List<EmployeeDTO> selectAllEmployee() {
+	public List<EmployeeDTO> selectAllEmployee(){
 		return session.selectList("selectAllEmployee");
 	}
-	
+
 }

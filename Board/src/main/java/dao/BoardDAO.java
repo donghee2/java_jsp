@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import config.DBManager;
+import dto.BoardCommentDTO;
 import dto.BoardDTO;
 
 public class BoardDAO {
@@ -217,6 +218,135 @@ public class BoardDAO {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, bno);
+			pstmt.setString(2, id);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.getInstance().close(null, pstmt);
+		}
+		return result;
+	}
+
+	public void insertBoardComment(BoardCommentDTO dto) {
+		String sql = "insert into board_comment(cno,content,bno,writer) "
+				+ "values(board_comment_cno.nextval,?,?,?)";
+		
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getComment());
+			pstmt.setInt(2, dto.getBno());
+			pstmt.setString(3, dto.getWriter());
+			
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.getInstance().close(null, pstmt);
+		}
+
+	}
+
+	public ArrayList<BoardCommentDTO> selectBoardCommentList(int bno) {
+		String sql = "select * from board_comment_view where bno = ?";
+		ArrayList<BoardCommentDTO> list = new ArrayList<BoardCommentDTO>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bno);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				list.add(new BoardCommentDTO(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4),
+						rs.getString(5), rs.getInt(6), rs.getInt(7)));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.getInstance().close(null, pstmt);
+		}
+		
+		return list;
+	}
+
+	public void deleteBoardComment(int cno) {
+		String sql = "delete from board_comment where cno = ?";
+		PreparedStatement pstmt = null;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, cno);
+		
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.getInstance().close(null, pstmt);
+		}
+	}
+
+	public int insertBoardCommentLike(int cno, String id) {
+		String sql = "insert into board_comment_like values(?,?)";
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, cno);
+			pstmt.setString(2, id);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.getInstance().close(null, pstmt);
+		}
+		return result;
+	}
+	
+	public int deleteBoardCommentLike(int cno, String id) {
+		String sql = "delete from board_comment_like where cno = ? and id = ?";
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, cno);
+			pstmt.setString(2, id);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.getInstance().close(null, pstmt);
+		}
+		return result;
+	}
+	
+	public int insertBoardCommentHate(int cno, String id) {
+		String sql = "insert into board_comment_hate values(?,?)";
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, cno);
+			pstmt.setString(2, id);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.getInstance().close(null, pstmt);
+		}
+		return result;
+	}
+	
+	public int deleteBoardCommentHate(int cno, String id) {
+		String sql = "delete from board_comment_hate where cno = ? and id = ?";
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, cno);
 			pstmt.setString(2, id);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

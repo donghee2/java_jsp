@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import config.DBManager;
 import dao.BoardDAO;
+import dto.BoardCommentDTO;
 import dto.BoardDTO;
 
 public class BoardService {
@@ -61,6 +62,34 @@ public class BoardService {
 		int result = BoardDAO.getInstance().insertBoardHate(bno, id);
 		if(result == 0)
 			BoardDAO.getInstance().deleteBoardHate(bno, id);
+		
+		return result;
+	}
+
+	public void insertBoardComment(BoardCommentDTO boardCommentDTO) {
+		BoardDAO.getInstance().insertBoardComment(boardCommentDTO);
+	}
+
+	public ArrayList<BoardCommentDTO> selectCommentList(int bno) {
+		return BoardDAO.getInstance().selectBoardCommentList(bno);
+	}
+
+	public void deleteBoardComment(int cno) {
+		BoardDAO.getInstance().deleteBoardComment(cno);
+	}
+
+	public int insertBoardCommentLike(int cno, String id) {
+		int result = BoardDAO.getInstance().insertBoardCommentLike(cno, id);
+		if(result == 0)
+			BoardDAO.getInstance().deleteBoardCommentLike(cno, id);
+		
+		return result;
+	}
+
+	public int insertBoardCommentHate(int cno, String id) {
+		int result = BoardDAO.getInstance().insertBoardCommentHate(cno, id);
+		if(result == 0)
+			BoardDAO.getInstance().deleteBoardCommentHate(cno, id);
 		
 		return result;
 	}

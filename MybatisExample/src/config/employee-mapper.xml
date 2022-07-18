@@ -26,4 +26,10 @@
 	<select id="selectPosition" parameterType="Map" resultMap="employee">
 		select * from employee where position_no between #{start} and #{end}
 	</select>
+	
 </mapper>
+
+
+
+
+

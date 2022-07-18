@@ -15,6 +15,6 @@
     </environment>
   </environments>
   <mappers>
-    <mapper resource="config/employee-mapper.xml"/>
+    <mapper resource="config/movie-mapper.xml"/>
   </mappers>
 </configuration>

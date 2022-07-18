@@ -3,5 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.MovieMapper">
-
+	<insert id="insertMovie" parameterType="dto.MovieDTO">
+		insert into movie values(movei_no.nextval, #{title}, #{open_date}, ${audience_count}, ${director})
+	</insert>
 </mapper>

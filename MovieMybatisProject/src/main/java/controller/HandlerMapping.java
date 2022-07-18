@@ -16,7 +16,9 @@ public class HandlerMapping {
 		Controller controller = null;
 		
 		switch(command) {
-		
+		case "insertMovie.do":
+			controller = new InsertMovieController();
+			break;
 		}
 		
 		return controller;

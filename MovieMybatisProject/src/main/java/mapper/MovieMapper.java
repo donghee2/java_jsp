@@ -3,6 +3,7 @@ package mapper;
 import org.apache.ibatis.session.SqlSession;
 
 import config.DBManager;
+import dto.MovieDTO;
 
 public class MovieMapper {
 	private static MovieMapper instance = new MovieMapper();
@@ -17,6 +18,10 @@ public class MovieMapper {
 		if(instance == null)
 			instance = new MovieMapper();
 		return instance;
+	}
+
+	public int insertMovie(MovieDTO dto) {
+		return session.insert("insertMovie", dto);
 	}
 
 	

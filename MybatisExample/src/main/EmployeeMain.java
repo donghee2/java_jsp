@@ -34,10 +34,20 @@ public class EmployeeMain {
 //			System.out.println(dto);
 //		}
 		
-		List<Map<String, Object>> list = EmployeeMapper.getInstance().selectPositionCount();
-		for(Map<String, Object> map : list) {
-			System.out.println(map.get("POSITION_NAME") + " " + map.get("ECOUNT")); // 키값 대소문자 확인
-		}
+//		List<Map<String, Object>> list = EmployeeMapper.getInstance().selectPositionCount();
+//		for(Map<String, Object> map : list) {
+//			System.out.println(map.get("POSITION_NAME") + " " + map.get("ECOUNT")); // 키값 대소문자 확인
+//		}
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+//		map.put("kind", "eno");
+//		map.put("search", "AA00");
+		map.put("kind", "name");
+		map.put("search", "김");
+		List<EmployeeDTO> list = EmployeeMapper.getInstance().selectSearchEmployee(map);
+		for(EmployeeDTO dto : list)
+			System.out.println(dto);
+		
 	}
 		
 }

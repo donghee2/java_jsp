@@ -2,6 +2,7 @@ package main;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import dto.EmployeeDTO;
 import mapper.EmployeeMapper;
@@ -25,12 +26,17 @@ public class EmployeeMain {
 //		int count = EmployeeMapper.getInstance().updatePosition();
 //		System.out.println(count);
 		
-		HashMap<String, Integer> map = new HashMap<String, Integer>();
-		map.put("start", 2);
-		map.put("end", 4);
-		List<EmployeeDTO> list = EmployeeMapper.getInstance().selectPosition(map);
-		for(EmployeeDTO dto : list) {
-			System.out.println(dto);
+//		HashMap<String, Integer> map = new HashMap<String, Integer>();
+//		map.put("start", 2);
+//		map.put("end", 4);
+//		List<EmployeeDTO> list = EmployeeMapper.getInstance().selectPosition(map);
+//		for(EmployeeDTO dto : list) {
+//			System.out.println(dto);
+//		}
+		
+		List<Map<String, Object>> list = EmployeeMapper.getInstance().selectPositionCount();
+		for(Map<String, Object> map : list) {
+			System.out.println(map.get("POSITION_NAME") + " " + map.get("ECOUNT")); // 키값 대소문자 확인
 		}
 	}
 		

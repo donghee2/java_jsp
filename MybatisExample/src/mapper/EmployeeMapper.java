@@ -29,6 +29,9 @@ public class EmployeeMapper {
 		return session.selectList("selectDeptEmployee", dept);
 	}
 	
+	public int insertEmployee(EmployeeDTO dto) {
+		return session.insert("insertEmployee", dto);
+	}
 }
 
 

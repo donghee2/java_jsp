@@ -1,8 +1,11 @@
 package mapper;
 
+import java.util.HashMap;
+
 import org.apache.ibatis.session.SqlSession;
 
 import config.DBManager;
+import dto.MemberDTO;
 
 public class MemberMapper {
 	private static MemberMapper instance = new MemberMapper();
@@ -18,5 +21,10 @@ public class MemberMapper {
 		return instance;
 	}
 
+	public MemberDTO login(HashMap<String, String> map) {
+		return session.selectOne("login", map);
+	}
+	
+	
 	
 }

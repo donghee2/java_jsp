@@ -60,7 +60,7 @@ public class MemberService {
 	}
 
 	public int updateMemberDTO(MemberDTO dto) {
-		return MemberDAO.getInstance().updateMemberDTO(dto);
+		return MemberMapper.getInstance().updateMemberDTO(dto);
 	}
 	
 }

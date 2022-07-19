@@ -6,8 +6,8 @@
 	<select id="login" parameterType="map" resultType="member">
 		select * from member where id like #{id} and passwd like #{passwd}
 	</select>
-	<select id="selectTopAge3" resultType="member">
-	<![CDATA[
+	<select id="selectTopAge3" resultType="member"> <!-- 비교문을 사용할 때 <![CDATA][sql문]> -->
+	<![CDATA[ 
 		select m.* from (select * from member ORDER BY age desc) m where rownum <= 3
 	]]>
 	</select>

@@ -2,6 +2,7 @@ package service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import dao.MemberDAO;
 import dto.MemberDTO;
@@ -26,14 +27,14 @@ public class MemberService {
 		return MemberMapper.getInstance().login(map);
 	}
 
-	public ArrayList<MemberDTO> selectTopAge3() {
-		return MemberDAO.getInstance().selectTopAge3();
+	public List<MemberDTO> selectTopAge3() {
+		return MemberMapper.getInstance().selectTopAge3();
 	}
 
 	public void insertMemberDTO(MemberDTO dto) throws MemberException {
-		if(MemberDAO.getInstance().selectMemberDTO(dto.getId()) != null) 
+		if(MemberMapper.getInstance().selectMemberDTO(dto.getId()) != null) 
 			throw new MemberException("아이디가 중복되었습니다.");
-		MemberDAO.getInstance().insertMemberDTO(dto);
+		MemberMapper.getInstance().insertMemberDTO(dto);
 		
 	}
 

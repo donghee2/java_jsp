@@ -1,6 +1,7 @@
 package mapper;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -23,6 +24,18 @@ public class MemberMapper {
 
 	public MemberDTO login(HashMap<String, String> map) {
 		return session.selectOne("login", map);
+	}
+
+	public List<MemberDTO> selectTopAge3() {
+		return session.selectList("selectTopAge3");
+	}
+
+	public Object selectMemberDTO(String id) {
+		return session.selectOne("selectMemberDTO", id);
+	}
+
+	public int insertMemberDTO(MemberDTO dto) {
+		return session.insert("insertMemberDTO", dto);
 	}
 	
 	

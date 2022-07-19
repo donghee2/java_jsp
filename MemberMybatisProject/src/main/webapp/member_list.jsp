@@ -121,7 +121,7 @@
 						<td>${m.address }</td>
 						<td><a href="memberDelete.do?command=delete&id=${m.id }">삭제</a></td>
 					</tr>
-				</c:forEach>
+				</c:forEach>		
 			</table>
 		</section>
 	</div>

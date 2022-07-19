@@ -30,7 +30,7 @@ public class MemberMapper {
 		return session.selectList("selectTopAge3");
 	}
 
-	public Object selectMemberDTO(String id) {
+	public MemberDTO selectMemberDTO(String id) {
 		return session.selectOne("selectMemberDTO", id);
 	}
 
@@ -40,6 +40,10 @@ public class MemberMapper {
 
 	public int updateMemberDTO(MemberDTO dto) {
 		return session.update("updateMemberDTO", dto);
+	}
+
+	public int deleteMemberDTO(String id) {
+		return session.delete("deleteMemberDTO", id);
 	}
 	
 	

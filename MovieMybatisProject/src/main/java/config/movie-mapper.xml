@@ -22,4 +22,7 @@
   	<select id="selectAllMovie" resultMap="movie">
   		select * from movie
   	</select>
+  	<select id="selectMovieList" parameterType="String" resultType="dto.movieDTO">
+  		select * from movie where title like '%' || #{search} '%'
+  	</select>
 </mapper>

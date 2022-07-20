@@ -1,9 +1,13 @@
 package test;
 
+import static org.junit.Assume.assumeFalse;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assumptions.assumeFalse;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.json.JSONArray;
@@ -49,10 +53,32 @@ class MovieTest {
 		session.rollback();
 		System.out.println("테스트 데이터 제거");
 	}
-
+	
+	// 데이터 추가 테스트 - insertMovie
 	@Test
-	void test() {
-
+	void testInsertMovie() {
+		MovieDTO dto = new MovieDTO(11, "테스트 제목", "23/09/11", 12415, "감독");
+		int result = 0;
+		try {
+			result = session.insert("insertTestMovie", dto);
+		} catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		assertEquals(result, 1, "영화 정보 추가기능 테스트 실패");
+	}
+	
+	// 데이터 검색 테스트 - selectMovieList
+	@Test
+	void testSelectMovieList() {
+		List<MovieDTO> list = session.selectList("selectMovieList", "닥터");
+		assumeFalse(list.size() == 0, "영화 정보 검색 기능 테스트 실패");
+		
+		if(list.size() == 0)
+			fail("영화 정보 검색 기능 테스트 실패");
 	}
 
 }
+
+
+
+

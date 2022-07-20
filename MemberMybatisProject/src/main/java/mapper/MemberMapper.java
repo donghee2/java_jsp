@@ -45,6 +45,14 @@ public class MemberMapper {
 	public int deleteMemberDTO(String id) {
 		return session.delete("deleteMemberDTO", id);
 	}
+
+	public List<MemberDTO> selectMemberList(String kind, String search) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("kind", kind);
+		map.put("search", search);
+		return session.selectList("selectMemberList", map);
+	}
+
 	
 	
 	

@@ -1,10 +1,8 @@
 package service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import dao.MemberDAO;
 import dto.MemberDTO;
 import exception.MemberException;
 import mapper.MemberMapper;
@@ -38,11 +36,8 @@ public class MemberService {
 		
 	}
 
-	public ArrayList<MemberDTO> selectMemberList(String kind, String search) {
-		if(kind == null) 
-			return MemberDAO.getInstance().selectMemberList();
-		else 
-			return MemberDAO.getInstance().selectMemberList(kind, search);
+	public List<MemberDTO> selectMemberList(String kind, String search) {
+		return MemberMapper.getInstance().selectMemberList(kind, search);
 		
 	}
 

@@ -24,7 +24,6 @@ public class DBManager {
 		try {
 			inputStream = Resources.getResourceAsStream(resource);
 			factory = new SqlSessionFactoryBuilder().build(inputStream);
-			conn = factory.openSession(true).getConnection();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -40,19 +39,7 @@ public class DBManager {
 	public SqlSession getSession() {
 		return factory.openSession(true);
 	}
-	
-	public Connection getConn() {
-		return conn;
-	}
 
-	public void close(ResultSet rs, PreparedStatement pstmt) {
-		try {
-			if(rs != null) rs.close();
-			if(pstmt != null) pstmt.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
 	
 }
 

@@ -60,7 +60,7 @@ class MovieTest {
 		MovieDTO dto = new MovieDTO(11, "테스트 제목", "23/09/11", 12415, "감독");
 		int result = 0;
 		try {
-			result = session.insert("insertTestMovie", dto);
+			result = session.insert("insertMovie", dto);
 		} catch(Exception e) {
 			System.out.println(e.getMessage());
 		}

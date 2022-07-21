@@ -2,6 +2,7 @@ package service;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import config.DBManager;
@@ -53,17 +54,23 @@ public class BoardService {
 	}
 
 	public int insertBoardLike(int bno, String id) {
-		int result = BoardDAO.getInstance().insertBoardLike(bno, id);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("bno", bno);
+		map.put("id", id);
+		int result = BoardMapper.getInstance().insertBoardLike(map);
 		if(result == 0)
-			BoardDAO.getInstance().deleteBoardLike(bno, id);
+			BoardMapper.getInstance().deleteBoardLike(map);
 		
 		return result;
 	}
 
 	public int insertBoardHate(int bno, String id) {
-		int result = BoardDAO.getInstance().insertBoardHate(bno, id);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("bno", bno);
+		map.put("id", id);
+		int result = BoardMapper.getInstance().insertBoardHate(map);
 		if(result == 0)
-			BoardDAO.getInstance().deleteBoardHate(bno, id);
+			BoardMapper.getInstance().deleteBoardHate(map);
 		
 		return result;
 	}

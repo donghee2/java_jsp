@@ -1,6 +1,8 @@
 package mapper;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -54,6 +56,59 @@ public class BoardMapper {
 		session.commit();
 		return result;
 	}
+
+	public int insertBoardLike(HashMap<String, Object> map) {
+		SqlSession session = DBManager.getInstance().getSession();
+		int result = 0;
+		try {
+			result = session.insert("insertBoardLike", map);
+			session.commit();
+		} catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
+
+	public int deleteBoardLike(HashMap<String, Object> map) {
+		SqlSession session = DBManager.getInstance().getSession();
+		int result = 0;
+		try {
+			result = session.delete("deleteBoardLike", map);
+			session.commit();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
+		
+	}
+
+	public int insertBoardHate(HashMap<String, Object> map) {
+		SqlSession session = DBManager.getInstance().getSession();
+		int result = 0;
+		try {
+			result = session.insert("insertBoardHate", map);
+			session.commit();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
+
+	public int deleteBoardHate(HashMap<String, Object> map) {
+		SqlSession session = DBManager.getInstance().getSession();
+		int result = 0;
+		try {
+			result = session.delete("deleteBoardHate", map);
+			session.commit();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
+		
+	}
+
+	
+
 
 	
 }

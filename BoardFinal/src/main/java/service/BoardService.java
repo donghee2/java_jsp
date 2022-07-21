@@ -29,11 +29,11 @@ public class BoardService {
 	}
 	
 	public int selectAllCount() {
-		return BoardDAO.getInstance().selectAllCount();
+		return BoardMapper.getInstance().selectBoardCount();
 	}
 
 	public void insertBoard(BoardDTO dto) {
-		BoardDAO.getInstance().insertBoard(dto);
+		BoardMapper.getInstance().insertBoard(dto);
 	}
 
 	public BoardDTO selectboard(int bno) {
@@ -45,7 +45,7 @@ public class BoardService {
 	}
 
 	public void updateBoard(BoardDTO dto) {
-		BoardDAO.getInstance().updateBoard(dto);
+		BoardMapper.getInstance().updateBoard(dto);
 	}
 
 	public void addBoardCount(int bno) {

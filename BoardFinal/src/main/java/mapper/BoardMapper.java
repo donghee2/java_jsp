@@ -34,5 +34,26 @@ public class BoardMapper {
 		return dto;
 	}
 
+	public int selectBoardCount() {
+		SqlSession session = DBManager.getInstance().getSession();
+		int result = session.selectOne("selectBoardCount");
+		session.close();
+		return result;
+	}
+
+	public int insertBoard(BoardDTO dto) {
+		SqlSession session = DBManager.getInstance().getSession();
+		int result = session.insert("insertBoard", dto);
+		session.commit();
+		return result;
+	}
+
+	public int updateBoard(BoardDTO dto) {
+		SqlSession session = DBManager.getInstance().getSession();
+		int result = session.update("updateBoard", dto);
+		session.commit();
+		return result;
+	}
+
 	
 }

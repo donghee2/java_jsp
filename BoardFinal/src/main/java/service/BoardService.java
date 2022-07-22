@@ -50,7 +50,7 @@ public class BoardService {
 	}
 
 	public void addBoardCount(int bno) {
-		BoardDAO.getInstance().addBoardCount(bno);
+		BoardMapper.getInstance().addBoardCount(bno);
 	}
 
 	public int insertBoardLike(int bno, String id) {
@@ -76,7 +76,7 @@ public class BoardService {
 	}
 
 	public void insertBoardComment(BoardCommentDTO boardCommentDTO) {
-		BoardDAO.getInstance().insertBoardComment(boardCommentDTO);
+		BoardMapper.getInstance().insertBoardComment(boardCommentDTO);
 	}
 
 	public ArrayList<BoardCommentDTO> selectCommentList(int bno) {

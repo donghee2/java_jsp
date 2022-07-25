@@ -8,12 +8,17 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function() {
+		var count = 3;
 		$("#plus").click(function() {
-			
+			if(count == 5) return;
+				count++;
+			$("form").append("<p><input type='file' name='file"+count+"'></p>")
 		});
 		
 		$("#minus").click(function() {
-			
+			if(count == 1) return;
+				count--;
+			$("form").children("p").last().remove();
 		});
 	});
 </script>

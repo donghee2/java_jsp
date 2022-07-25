@@ -9,7 +9,15 @@
 </head>
 <body>
 	<h2>${requestScope.writer }가 보낸 파일</h2>
-	<a href="fileDown.do?file=${requestScope.file1 }">파일 다운로드</a>
-	${requestScope.file1 }
+	<c:forEach var="file" items="${requestScope.fileList }">
+		<c:choose>
+			<c:when test="${file.type == 'image' }">
+				<p><img src="fileDown.do?file=${file.fileName }"></p>
+			</c:when>
+			<c:otherwise>
+				<p><a href="fileDown.do?file=${file.fileName }">${file.fileName } 다운로드</a></p>
+			</c:otherwise>
+		</c:choose>
+	</c:forEach>
 </body>
 </html>

@@ -36,7 +36,8 @@ public class FileUploadServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String encoding = "utf-8";
-		File userRoot = new File("");
+		File userRoot = new File(request.getSession().getServletContext().getRealPath("/")
+				+"/upload");
 		
 		DiskFileItemFactory factory = new DiskFileItemFactory();
 		factory.setRepository(userRoot); // 업로드될 폴더 설정
@@ -46,9 +47,33 @@ public class FileUploadServlet extends HttpServlet {
 		
 		try {
 			List<FileItem> list = upload.parseRequest(request);
+			for(FileItem item : list) {
+				if(item.isFormField()) {
+					System.out.println(item.getFieldName() + "=" + item.getString(encoding));
+				} else {
+					System.out.println("매개변수명 : " + item.getFieldName());
+					System.out.println("파일명 : " + item.getName());
+					System.out.println("파일크기 : " + item.getSize());
+					System.out.println("파일타입 : " + item.getContentType());
+					if(item.getSize() > 0) {
+						int idx = item.getName().lastIndexOf("\\"); // 절대경로
+						if(idx == -1) {
+							idx = item.getName().lastIndexOf("/"); // 상대경로
+						}
+						String fileName = item.getName().substring(idx + 1);
+						File uploadFile = new File(userRoot + "\\" + fileName);
+						item.write(uploadFile);
+						request.setAttribute("file1", request.getContextPath() + "/upload/" + fileName);
+					}
+				}
+			}
 		} catch (FileUploadException e) {
 			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		
+		request.getRequestDispatcher("file_result.jsp").forward(request, response);
 	}
 
 	/**

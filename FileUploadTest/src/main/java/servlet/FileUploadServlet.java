@@ -38,7 +38,9 @@ public class FileUploadServlet extends HttpServlet {
 		String encoding = "utf-8";
 		File userRoot = new File(request.getSession().getServletContext().getRealPath("/")
 				+"/upload");
-		
+		if(userRoot.exists()) {
+			userRoot.mkdirs();
+		}
 		DiskFileItemFactory factory = new DiskFileItemFactory();
 		factory.setRepository(userRoot); // 업로드될 폴더 설정
 		factory.setSizeThreshold(1024*1024); // 버퍼 메모리
@@ -49,7 +51,7 @@ public class FileUploadServlet extends HttpServlet {
 			List<FileItem> list = upload.parseRequest(request);
 			for(FileItem item : list) {
 				if(item.isFormField()) {
-					System.out.println(item.getFieldName() + "=" + item.getString(encoding));
+					System.out.println(item.getFieldName() + " = " + item.getString(encoding));
 					request.setAttribute(item.getFieldName(), item.getString(encoding));
 				} else {
 					System.out.println("매개변수명 : " + item.getFieldName());

@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -48,6 +49,7 @@ public class FileUploadServlet extends HttpServlet {
 		ServletFileUpload upload = new ServletFileUpload(factory);
 		
 		try {
+			ArrayList<FileDTO> fList = new ArrayList<FileDTO>();
 			List<FileItem> list = upload.parseRequest(request);
 			for(FileItem item : list) {
 				if(item.isFormField()) {
@@ -66,10 +68,11 @@ public class FileUploadServlet extends HttpServlet {
 						String fileName = item.getName().substring(idx + 1);
 						File uploadFile = new File(userRoot + "\\" + fileName);
 						item.write(uploadFile);
-						request.setAttribute("file1", fileName);
+						fList.add(new FileDTO(uploadFile));
 					}
 				}
 			}
+			request.setAttribute("fileList", fList);
 		} catch (FileUploadException e) {
 			e.printStackTrace();
 		} catch (Exception e) {

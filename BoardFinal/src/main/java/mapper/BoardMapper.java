@@ -1,7 +1,5 @@
 package mapper;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,6 +13,7 @@ public class BoardMapper {
 	private static BoardMapper instance = new BoardMapper();
 
 	private BoardMapper() {
+
 	}
 
 	public static BoardMapper getInstance() {
@@ -36,11 +35,12 @@ public class BoardMapper {
 		session.close();
 		return dto;
 	}
-
+	
 	public int selectBoardCount() {
 		SqlSession session = DBManager.getInstance().getSession();
 		int result = session.selectOne("selectBoardCount");
 		session.close();
+		
 		return result;
 	}
 
@@ -64,25 +64,22 @@ public class BoardMapper {
 		try {
 			result = session.insert("insertBoardLike", map);
 			session.commit();
-		} catch(Exception e) {
+		}catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 		return result;
 	}
-
 	public int deleteBoardLike(HashMap<String, Object> map) {
 		SqlSession session = DBManager.getInstance().getSession();
 		int result = 0;
 		try {
-			result = session.delete("deleteBoardLike", map);
+			result = session.insert("deleteBoardLike", map);
 			session.commit();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 		return result;
-		
 	}
-
 	public int insertBoardHate(HashMap<String, Object> map) {
 		SqlSession session = DBManager.getInstance().getSession();
 		int result = 0;
@@ -94,21 +91,19 @@ public class BoardMapper {
 		}
 		return result;
 	}
-
 	public int deleteBoardHate(HashMap<String, Object> map) {
 		SqlSession session = DBManager.getInstance().getSession();
 		int result = 0;
 		try {
-			result = session.delete("deleteBoardHate", map);
+			result = session.insert("deleteBoardHate", map);
 			session.commit();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 		return result;
-		
 	}
 
-	public int addBoardCount(int bno) {
+	public int addCountBoard(int bno) {
 		SqlSession session = DBManager.getInstance().getSession();
 		int result = 0;
 		try {
@@ -118,6 +113,7 @@ public class BoardMapper {
 			System.out.println(e.getMessage());
 		}
 		return result;
+		
 	}
 
 	public int insertBoardComment(BoardCommentDTO dto) {
@@ -129,11 +125,98 @@ public class BoardMapper {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		return result;
+		return result;		
 	}
 
-	
+	public int insertBoardCommentLike(int cno, String id) {
+		SqlSession session = DBManager.getInstance().getSession();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("cno", cno);
+		map.put("id", id);
+		int result = 0;
+		try {
+			result = session.insert("insertBoardCommentLike", map);
+			session.commit();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return result;		
+	}
 
+	public int deleteBoardCommentLike(int cno, String id) {
+		SqlSession session = DBManager.getInstance().getSession();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("cno", cno);
+		map.put("id", id);
+		int result = 0;
+		try {
+			result = session.delete("deleteBoardCommentLike", map);
+			session.commit();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return result;		
+	}
 
+	public int insertBoardCommentHate(int cno, String id) {
+		SqlSession session = DBManager.getInstance().getSession();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("cno", cno);
+		map.put("id", id);
+		int result = 0;
+		try {
+			result = session.insert("insertBoardCommentHate", map);
+			session.commit();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return result;		
+	}
+
+	public int deleteBoardCommentHate(int cno, String id) {
+		SqlSession session = DBManager.getInstance().getSession();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("cno", cno);
+		map.put("id", id);
+		int result = 0;
+		try {
+			result = session.delete("deleteBoardCommentHate", map);
+			session.commit();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return result;		
+	}
+
+	public int deleteBoardComment(int cno) {
+		SqlSession session = DBManager.getInstance().getSession();
+		int result = 0;
+		try {
+			result = session.delete("deleteBoardComment", cno);
+			session.commit();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return result;		
+		
+	}
+
+	public List<BoardCommentDTO> selectBoardCommentList(int bno) {
+		SqlSession session = DBManager.getInstance().getSession();
+		List<BoardCommentDTO> list = session.selectList("selectBoardCommentList", bno);
+		return list;
+	}
+
+	public int deleteBoard(int bno) {
+		SqlSession session = DBManager.getInstance().getSession();
+		int result = 0;
+		try {
+			result = session.delete("deleteBoard", bno);
+			session.commit();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return result;	
+	}
 	
 }

@@ -17,7 +17,7 @@ public class BoardUpdateViewController implements Controller {
 			throws ServletException, IOException {
 		int bno = Integer.parseInt(request.getParameter("bno"));
 
-		BoardDTO dto = BoardService.getInstance().selectboard(bno);
+		BoardDTO dto = BoardService.getInstance().selectBoard(bno);
 
 		request.setAttribute("board", dto);
 

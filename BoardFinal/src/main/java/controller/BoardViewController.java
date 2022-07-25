@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -29,13 +30,13 @@ public class BoardViewController implements Controller {
 		}
 		request.getSession().setAttribute("bno_history", set);
 		// 게시글 읽어옴
-		BoardDTO dto = BoardService.getInstance().selectboard(bno);
+		BoardDTO dto = BoardService.getInstance().selectBoard(bno);
 		
 		dto.setContent(dto.getContent().replaceAll("\n", "<br>"));
 		request.setAttribute("board", dto);
 		
 		// 게시글에 해당하는 댓글을 읽어옴
-		ArrayList<BoardCommentDTO> list = BoardService.getInstance().selectCommentList(bno);
+		List<BoardCommentDTO> list = BoardService.getInstance().selectCommentList(bno);
 		request.setAttribute("list", list);
 		
 		return new ModelAndView("board_view.jsp", false);

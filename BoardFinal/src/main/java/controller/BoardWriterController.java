@@ -22,6 +22,8 @@ public class BoardWriterController implements Controller {
 		String writer = request.getParameter("writer");
 		
 		BoardDTO dto = new BoardDTO(title, writer, content);
+		int bno = BoardService.getInstance().selectBoardNo();
+		dto.setBno(bno);
 		
 		BoardService.getInstance().insertBoard(dto);
 		

@@ -43,7 +43,7 @@ public class BoardMapper {
 		
 		return result;
 	}
-
+	
 	public int insertBoard(BoardDTO dto) {
 		SqlSession session = DBManager.getInstance().getSession();
 		int result = session.insert("insertBoard", dto);
@@ -217,6 +217,14 @@ public class BoardMapper {
 			System.out.println(e.getMessage());
 		}
 		return result;	
+	}
+
+	public int selectBoardNo() {
+		SqlSession session = DBManager.getInstance().getSession();
+		int result = 0;
+		result = session.selectOne("selectBoardNo");
+		session.close();
+		return result;
 	}
 	
 }

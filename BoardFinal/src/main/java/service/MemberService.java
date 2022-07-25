@@ -1,9 +1,7 @@
 package service;
 
-import java.sql.Connection;
 
 import config.DBManager;
-import dao.MemberDAO;
 import dto.MemberDTO;
 import mapper.MemberMapper;
 

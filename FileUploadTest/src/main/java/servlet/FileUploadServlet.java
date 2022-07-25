@@ -36,8 +36,8 @@ public class FileUploadServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String encoding = "utf-8";
-		File userRoot = new File(request.getSession().getServletContext().getRealPath("/")
-				+"/upload");
+		// 파일 업로드 할 기본폴더 c:\\fileUpload\\ 에 파일 업로드
+		File userRoot = new File("c:\\fileUpload\\");
 		if(userRoot.exists()) {
 			userRoot.mkdirs();
 		}
@@ -66,7 +66,7 @@ public class FileUploadServlet extends HttpServlet {
 						String fileName = item.getName().substring(idx + 1);
 						File uploadFile = new File(userRoot + "\\" + fileName);
 						item.write(uploadFile);
-						request.setAttribute("file1", request.getContextPath() + "/upload/" + fileName);
+						request.setAttribute("file1", fileName);
 					}
 				}
 			}

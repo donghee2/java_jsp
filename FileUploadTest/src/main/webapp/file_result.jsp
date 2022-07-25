@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h2>${requestScope.writer }가 보낸 파일</h2>
-	<a href="${requestScope.file1 }">파일 다운로드</a>
+	<a href="fileDown.do?file=${requestScope.file1 }">파일 다운로드</a>
 	${requestScope.file1 }
 </body>
 </html>

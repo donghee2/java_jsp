@@ -29,7 +29,7 @@ public class BoardWriterController implements Controller {
 		String writer = null;
 		int bno = 0;
 		String encoding = "utf-8";
-		String root = "c:\\fileupload\\";
+		String root = "c:\\fileUpload\\";
 		File userRoot = new File(root);
 		if(!userRoot.exists())
 			userRoot.mkdirs();
@@ -80,10 +80,12 @@ public class BoardWriterController implements Controller {
 			bno = BoardService.getInstance().selectBoardNo();
 			// 게시글 추가
 			BoardDTO dto = new BoardDTO(title, writer, content);
+			dto.setBno(bno);
 			BoardService.getInstance().insertBoard(dto);
 			// 파일 테이블에 업로드한 파일 정보를 저장
 			for(FileDTO file : fList) {
 				file.setBno(bno);
+//				System.out.println(file);
 				BoardService.getInstance().insertFile(file);
 			}
 			

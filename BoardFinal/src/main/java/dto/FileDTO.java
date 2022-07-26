@@ -44,6 +44,20 @@ public class FileDTO {
 	}
 
 	public void setPath(String path) {
+		File file = new File(path);
+		this.path = file.getAbsolutePath();
+		this.fileName = file.getName();
+		// 파일 확장자 뽑음
+		switch(fileName.substring(fileName.lastIndexOf(".")+1).toLowerCase()) {
+		case "png":
+		case "bmp":
+		case "gif":
+		case "jpg":
+			this.type = "image";
+			break;
+		default :
+			this.type = "normal";
+		}
 		this.path = path;
 	}
 

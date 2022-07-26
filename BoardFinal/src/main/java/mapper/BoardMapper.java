@@ -49,6 +49,7 @@ public class BoardMapper {
 		SqlSession session = DBManager.getInstance().getSession();
 		int result = session.insert("insertBoard", dto);
 		session.commit();
+		session.close();
 		return result;
 	}
 
@@ -56,6 +57,7 @@ public class BoardMapper {
 		SqlSession session = DBManager.getInstance().getSession();
 		int result = session.update("updateBoard", dto);
 		session.commit();
+		session.close();
 		return result;
 	}
 
@@ -65,6 +67,7 @@ public class BoardMapper {
 		try {
 			result = session.insert("insertBoardLike", map);
 			session.commit();
+			session.close();
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -76,6 +79,7 @@ public class BoardMapper {
 		try {
 			result = session.insert("deleteBoardLike", map);
 			session.commit();
+			session.close();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -87,6 +91,7 @@ public class BoardMapper {
 		try {
 			result = session.insert("insertBoardHate", map);
 			session.commit();
+			session.close();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -98,6 +103,7 @@ public class BoardMapper {
 		try {
 			result = session.insert("deleteBoardHate", map);
 			session.commit();
+			session.close();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -110,6 +116,7 @@ public class BoardMapper {
 		try {
 			result = session.update("addCountBoard", bno);
 			session.commit();
+			session.close();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -123,6 +130,7 @@ public class BoardMapper {
 		try {
 			result = session.insert("insertBoardComment", dto);
 			session.commit();
+			session.close();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -138,6 +146,7 @@ public class BoardMapper {
 		try {
 			result = session.insert("insertBoardCommentLike", map);
 			session.commit();
+			session.close();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -153,6 +162,7 @@ public class BoardMapper {
 		try {
 			result = session.delete("deleteBoardCommentLike", map);
 			session.commit();
+			session.close();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -168,6 +178,7 @@ public class BoardMapper {
 		try {
 			result = session.insert("insertBoardCommentHate", map);
 			session.commit();
+			session.close();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -183,6 +194,7 @@ public class BoardMapper {
 		try {
 			result = session.delete("deleteBoardCommentHate", map);
 			session.commit();
+			session.close();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -195,6 +207,7 @@ public class BoardMapper {
 		try {
 			result = session.delete("deleteBoardComment", cno);
 			session.commit();
+			session.close();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -214,6 +227,7 @@ public class BoardMapper {
 		try {
 			result = session.delete("deleteBoard", bno);
 			session.commit();
+			session.close();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -236,6 +250,13 @@ public class BoardMapper {
 		session.close();
 		return result;
 		
+	}
+
+	public List<FileDTO> selectFileList(int bno) {
+		SqlSession session = DBManager.getInstance().getSession();
+		List<FileDTO> list = session.selectList("selectFileList", bno);
+		session.close();
+		return list;
 	}
 	
 }

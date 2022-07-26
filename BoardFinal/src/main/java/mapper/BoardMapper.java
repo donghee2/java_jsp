@@ -258,5 +258,12 @@ public class BoardMapper {
 		session.close();
 		return list;
 	}
+
+	public FileDTO selectFile(HashMap<String, Integer> map) {
+		SqlSession session = DBManager.getInstance().getSession();
+		FileDTO dto = session.selectOne("selectFile", map);
+		session.close();
+		return dto;
+	}
 	
 }

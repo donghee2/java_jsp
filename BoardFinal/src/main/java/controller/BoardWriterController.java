@@ -74,8 +74,7 @@ public class BoardWriterController implements Controller {
                   
                   if(!uploadFile.getParentFile().exists())
                      uploadFile.getParentFile().mkdirs();
-                  filelist.add(new FileDTO(uploadFile.getAbsolutePath(), uploadFile.getName(),
-                        fileName, 0, filelist.size()));
+                  filelist.add(new FileDTO(uploadFile, 0, filelist.size()));
                }
             }
          }
